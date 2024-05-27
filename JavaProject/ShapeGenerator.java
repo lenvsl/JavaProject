@@ -2,22 +2,21 @@
 // ΑΜ: [Ο Αριθμός Μητρώου Σας]
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Collections;
 
 public class ShapeGenerator {
-    private List<Shape> shapes;
-    private static final int[] POSSIBLE_SIZES = {1, 2, 3, 4, 8, 12, 16};
-    private Random random;
-
-    public ShapeGenerator(int shapesPerType) {
-        shapes = new ArrayList<>();
-        random = new Random();
-        initializeShapes(shapesPerType);
+    private static final int[] SIZES = {1, 2, 3, 4, 8, 12, 16}; //πιθανές τιμές για το εμβαδόν του περιβάλλοντος τετραγώνου
+    private List<Shape> shapes; //λίστα για αποθήκευση σχημάτων
+    private Random randomNumber; //τυχαίος αριθμός για δημιουργία bonus και τυχαία αναδιάταξη
+    public ShapeGenerator(int shapesPerType) { //κλάση ShapeGenerator η οποία υλοποιεί την γεννήτρια που παράγει σχήματα
+        shapes = new ArrayList<>(); //αρχικοποίηση της λίστας
+        //randomNumber = new Random();
+        initializeShapes(shapesPerType); //κλήση της μεθόδου για αρχικοποίηση των σχημάτων
     }
 
-    private void initializeShapes(int shapesPerType) {
+    private void initializeShapes(int shapesPerType) { //μέθοδος initializeShapes που καλείται από τον constructor και γεμίζει τον πίνακα με τα σχήματα
         for (int i = 0; i < shapesPerType; i++) {
             shapes.add(new Square(getRandomSize()));
             shapes.add(new Triangle(getRandomSize()));
@@ -29,40 +28,39 @@ public class ShapeGenerator {
     }
 
     private int getRandomSize() {
-        return POSSIBLE_SIZES[random.nextInt(POSSIBLE_SIZES.length)];
+        return SIZES[randomNumber.nextInt(SIZES.length)];
     }
 
     private double getRandomBonus() {
-        return 1 + random.nextInt(10);
+        return 1 + randomNumber.nextInt(10);
     }
 
-    public Shape nextShape() {
-        if (shapes.isEmpty()) {
+    public Shape nextShape() { //μέθοδος nextShape η οποία επιστρέφει ένα τυχαίο σχήμα από τον πίνακα και το αφαιρεί
+        if (shapes.isEmpty()) { //έλεγχος αν η λίστα είναι άδεια
             return null;
         }
-        return shapes.remove(0);
+        return shapes.remove(0); //επιστροφή και αφαίρεση του πρώτου σχήματος από τη λίστα
     }
 
-    public boolean hasShape() {
-        return !shapes.isEmpty();
+    public boolean hasShape() { //μέθοδο hasShape που επιστρέφει μια Boolean τιμή αν η γεννήτρια έχει άλλα σχήματα
+        return !shapes.isEmpty(); //επιστροφή true αν η λίστα δεν είναι άδεια
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(); //δημιουργία StringBuilder για τη δημιουργία string
         for (Shape shape : shapes) {
-            sb.append(shape).append("\n");
+            stringBuilder.append(shape).append("\n"); //προσθήκη κάθε σχήματος στη συμβολοσειρά ανά γραμμή
         }
-        return sb.toString();
+        return stringBuilder.toString(); //επιστροφή της συμβολοσειράς
     }
 
-    public static void main(String[] args) {
-        ShapeGenerator generator = new ShapeGenerator(2);
-        while (generator.hasShape()) {
-            Shape shape = generator.nextShape();
-            System.out.println("Next shape: " + shape);
-            System.out.println("Remaining shapes in generator:");
-            System.out.println(generator);
+    public static void main(String[] args) { //μέθοδος main που δημιουργεί μια γεννήτρια με 2 σχήματα ανά τύπο, και καλεί την nextShape μέχρι να τελειώσουν τα σχήματα της γεννήτριας
+        ShapeGenerator shapeGenerator = new ShapeGenerator(2); //δημιουργία γεννήτριας με 2 σχήματα ανά τύπο
+        while (shapeGenerator.hasShape()) {
+            Shape shape = shapeGenerator.nextShape(); //λήψη του επόμενου σχήματος
+            System.out.println("Επόμενο σχήμα: " + shape); //εμφάνιση του σχήματος
+            System.out.println("Υπόλοιπα σχήματα στη γεννήτρια:" + shapeGenerator); //εμφάνιση της γεννήτριας
         }
     }
 }

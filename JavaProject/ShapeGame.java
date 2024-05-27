@@ -7,10 +7,10 @@ public class ShapeGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("Enter the number of shapes per type: ");
+        System.out.print("Εισαγάγετε τον αριθμό των σχημάτων ανά τύπο: ");
         int shapesPerType = scanner.nextInt();
         
-        System.out.print("Enter the stack size for the player: ");
+        System.out.print("Εισαγάγετε το μέγεθος στοίβας για τον παίκτη: ");
         int stackSize = scanner.nextInt();
         
         ShapeGenerator generator = new ShapeGenerator(shapesPerType);
@@ -22,9 +22,8 @@ public class ShapeGame {
             if (nextShape != null) {
                 player.playShape(nextShape);
             }
-            System.out.println("Current points: " + player.getPoints());
+            System.out.println("Πόντοι μέχρι τώρα: " + player.playerPoints());
         }
-        
-        System.out.println("Game over! Final points: " + player.getPoints());
+        System.out.println("Game over! Final points: " + player.playerPoints());
     }
 }

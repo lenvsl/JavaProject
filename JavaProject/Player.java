@@ -5,57 +5,61 @@ import java.util.Stack;
 import java.util.Scanner;
 
 public class Player {
-    private Stack<Shape> shapeStack;
-    private int maxSize;
-    private double points;
+    private Stack<Shape> shapeStack; //στοίβα για αποθήκευση των σχημάτων του παίχτη
+    private int maxSize; //μαξ μέγεθος της στοίβας
+    private double points; //πόντοι του παίχτη
 
     public Player(int maxSize) {
-        this.maxSize = maxSize;
-        this.shapeStack = new Stack<>();
-        this.points = 0;
+        this.maxSize = maxSize; //σρχικοποίηση του μαξ μεγέθους της στοίβας
+        this.shapeStack = new Stack<>(); //αρχικοποίηση της στοίβας
+        this.points = 0; //αρχικοποίηση των πόντων του παίχτη
     }
 
-    public void playShape(Shape shape) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("New shape generated: " + shape);
-        System.out.println("Do you want to keep this shape? (yes/no): ");
-        String input = scanner.nextLine().trim().toLowerCase();
+    public void playShape(Shape shape) { //μέθοδος playShape η οποία παίρνει σαν όρισμα ένα σχήμα και υλοποιεί το παιχνίδι του παίχτη για το         σχήμα
+        Scanner scanner = new Scanner(System.in); 
+        System.out.println("Δημιουργήθηκε νέο σχήμα: " + shape);
+        System.out.println("Θέλετε να διατηρήσετε αυτό το σχήμα; (y/n):");
+        String input = scanner.nextLine().trim().toLowerCase(); //ανάγνωση της απάντησης του χρήστη
 
-        if (input.equals("yes")) {
-            double shapePoints = shape.computePoints();
-            if (!shapeStack.isEmpty()) {
-                Shape topShape = shapeStack.peek();
-                if (shape.sameArea(topShape)) {
-                    shapePoints *= 10;
+
+        if (input.equals("y")) { //αν η απάντηση είναι "ναι"
+            double shapePoints = shape.computePoints(); //υπολογισμός των πόντων του σχήματος
+            if (!shapeStack.isEmpty()) { //αν η στοίβα δεν είναι άδεια
+                
+                Shape topOfStack = shapeStack.peek(); //παίρνουμε το σχήμα στην κορυφή της στοίβας
+                
+                if (shape.sameArea(topOfStack)) {  //αν το νέο σχήμα έχει το ίδιο εμβαδόν με το σχήμα στην κορυφή
+                    shapePoints = shapePoints*10; //δεκαπλασιάζουμε
                 }
-                if (shape.sameType(topShape)) {
-                    shapeStack.pop();
-                    shapePoints += topShape.computePoints();
+                
+                if (shape.sameType(topOfStack)) { //αν το νέο σχήμα έχει τον ίδιο τύπο με το σχήμα στην κορυφή
+                    shapeStack.pop(); //αφαιρούμε το σχήμα από την κορυφή της στοίβας
+                    shapePoints = shapePoints + topOfStack.computePoints(); //προσθέτουμε τους πόντους του αφαιρεμένου σχήματος
                 } else {
-                    shapeStack.push(shape);
+                    shapeStack.push(shape); //προσθέτουμε το νέο σχήμα στην στοίβα
                 }
             } else {
-                shapeStack.push(shape);
+                shapeStack.push(shape); //αν η στοίβα είναι άδεια, προσθέτουμε το νέο σχήμα
             }
-            points += shapePoints;
-            System.out.println("Points gained: " + shapePoints);
+            points = points + shapePoints; //προσθέτουμε τους πόντους του σχήματος στους συνολικούς πόντους
+            System.out.println("Κερδισμένοι πόντοι: " + shapePoints);
         } else {
-            System.out.println("Shape discarded.");
+            System.out.println("Το σχήμα απορρίφθηκε.");
         }
     }
 
-    public boolean isStackFull() {
-        return shapeStack.size() >= maxSize;
+    public boolean isStackFull() { //μέθοδος isStackFull που ελέγχει αν γέμισε η στοίβα του παίχτη
+        return shapeStack.size() >= maxSize; //επιστρέφει true αν η στοίβα έχει φτάσει το μέγιστο μέγεθος
     }
 
-    public void printStack() {
-        System.out.println("Player's stack:");
-        for (Shape shape : shapeStack) {
-            System.out.println(shape);
+    public void printStack() { //μέθοδος printStack που εκτυπώνει την στοίβα
+        System.out.println("Στοίβα παίκτη:");
+        for (Shape shape : shapeStack) { //για κάθε σχήμα στη στοίβα
+            System.out.println(shape); //εμφάνιση του σχήματος
         }
     }
 
-    public double getPoints() {
+    public double playerPoints() { //μέθοδος πρόσβασης για τους πόντους του παίχτη
         return points;
     }
 }
