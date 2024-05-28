@@ -2,7 +2,7 @@
 // ΑΜ: [Ο Αριθμός Μητρώου Σας]
 
 public class Pentagon extends Shape { //κληρονομει από την κλάση Shape
-    public Pentagon(int accessMethodForSquare) {
+    public Pentagon(double accessMethodForSquare) {
         super("Pentagon", accessMethodForSquare); //κλήση του constructor της υπερκλάσης με τον τύπο "Pentagon" και το εμβαδόν του περιβάλλοντος τετραγώνου
     }
 

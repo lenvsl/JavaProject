@@ -2,7 +2,7 @@
 // ΑΜ: [Ο Αριθμός Μητρώου Σας]
 
 public class Square extends Shape { //κληρονομει από την κλάση Shape
-    public Square(int accessMethodForSquare) {
+    public Square(double accessMethodForSquare) {
         super("Square", accessMethodForSquare); //κλήση του constructor της υπερκλάσης με τον τύπο "Square" και το εμβαδόν του περιβάλλοντος τετραγώνου
     }
 

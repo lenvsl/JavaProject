@@ -3,9 +3,9 @@
 
 public abstract class Shape {
     private String type; //τύπος του σχήματος
-    private int accessMethodForSquare; //εμβαδόν περιβάλλοντος τετραγώνου
+    private double accessMethodForSquare; //εμβαδόν περιβάλλοντος τετραγώνου
 
-    public Shape(String type, int accessMethodForSquare) {
+    public Shape(String type, double accessMethodForSquare) {
         this.type = type; //αρχικοποίηση του τύπου
         this.accessMethodForSquare = accessMethodForSquare; //αρχικοποίηση του εμβαδόν του περιβάλλοντος τετραγώνου
     }
@@ -29,7 +29,7 @@ public abstract class Shape {
         return type + ": " + computeArea();
     }
 
-    public int getAccessMethodForSquare() { //μέθοδος πρόσβασης για το εμβαδόν του περιβάλλοντος τετραγώνου
+    public double getAccessMethodForSquare() { //μέθοδος πρόσβασης για το εμβαδόν του περιβάλλοντος τετραγώνου
         return accessMethodForSquare;
     }
 }

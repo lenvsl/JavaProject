@@ -4,7 +4,7 @@
 public class BonusCircle extends Circle { //η BonusCircle κληρονομεί από την Circle
     private double bonus; //πεδίο για το bonus
 
-    public BonusCircle(int accessMethodForSquare, double bonus) {
+    public BonusCircle(double accessMethodForSquare, double bonus) {
         super(accessMethodForSquare); //κλήση του constructor της υπερκλάσης Circle
         this.bonus = bonus; //αρχικοποίηση του bonus
     }
