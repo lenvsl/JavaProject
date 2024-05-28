@@ -12,7 +12,7 @@ public class ShapeGenerator {
     private Random randomNumber; //τυχαίος αριθμός για δημιουργία bonus και τυχαία αναδιάταξη
     public ShapeGenerator(int numOfShapes) { //κλάση ShapeGenerator η οποία υλοποιεί την γεννήτρια που παράγει σχήματα
         shapes = new ArrayList<>(); //αρχικοποίηση της λίστας
-        //randomNumber = new Random();
+        randomNumber = new Random();
         initializeShapes(numOfShapes); //κλήση της μεθόδου για αρχικοποίηση των σχημάτων
     }
 
