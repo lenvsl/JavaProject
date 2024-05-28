@@ -20,29 +20,30 @@ public class Player {
             System.out.println("Dimiourgithike neo schima: " + shape);
             System.out.println("Thelete na diatirisete afto to schima; (yes/no):");
             String input = scanner.nextLine().trim().toLowerCase(); //ανάγνωση της απάντησης του χρήστη
-        if ("yes".equals(input)) { //αν η απάντηση είναι "ναι"
-            double shapePoints = shape.computePoints(); //υπολογισμός των πόντων του σχήματος
-            if (!shapeStack.isEmpty()) { //αν η στοίβα δεν είναι άδεια
-                Shape topOfStack = shapeStack.peek(); //παίρνουμε το σχήμα στην κορυφή της στοίβας
+        
+            if ("yes".equals(input)) { //αν η απάντηση είναι "ναι"
+                double shapePoints = shape.computePoints(); //υπολογισμός των πόντων του σχήματος
+                    if (!shapeStack.isEmpty()) { //αν η στοίβα δεν είναι άδεια
+                        Shape topOfStack = shapeStack.peek(); //παίρνουμε το σχήμα στην κορυφή της στοίβας
 
-                if (shape.sameArea(topOfStack)) {  //αν το νέο σχήμα έχει το ίδιο εμβαδόν με το σχήμα στην κορυφή
-                    shapePoints = shapePoints*10; //δεκαπλασιάζουμε
-                }
-                
-                if (shape.sameType(topOfStack)) { //αν το νέο σχήμα έχει τον ίδιο τύπο με το σχήμα στην κορυφή
-                    shapeStack.pop(); //αφαιρούμε το σχήμα από την κορυφή της στοίβας
-                    shapePoints = shapePoints + topOfStack.computePoints(); //προσθέτουμε τους πόντους του αφαιρεμένου σχήματος
+                        if (shape.sameArea(topOfStack)) {  //αν το νέο σχήμα έχει το ίδιο εμβαδόν με το σχήμα στην κορυφή
+                            shapePoints = shapePoints*10; //δεκαπλασιάζουμε
+                        }
+                        
+                        if (shape.sameType(topOfStack)) { //αν το νέο σχήμα έχει τον ίδιο τύπο με το σχήμα στην κορυφή
+                            shapeStack.pop(); //αφαιρούμε το σχήμα από την κορυφή της στοίβας
+                            shapePoints = shapePoints + topOfStack.computePoints(); //προσθέτουμε τους πόντους του αφαιρεμένου σχήματος
+                        } else {
+                            shapeStack.push(shape); //προσθέτουμε το νέο σχήμα στην στοίβα
+                        }
+                    } else {
+                        shapeStack.push(shape); //αν η στοίβα είναι άδεια, προσθέτουμε το νέο σχήμα
+                    }
+                    points = points + shapePoints; //προσθέτουμε τους πόντους του σχήματος στους συνολικούς πόντους
+                    System.out.println("Kerdismenoi pontoi: " + shapePoints);
                 } else {
-                    shapeStack.push(shape); //προσθέτουμε το νέο σχήμα στην στοίβα
+                    System.out.println("To schima aporrifthike.");
                 }
-            } else {
-                shapeStack.push(shape); //αν η στοίβα είναι άδεια, προσθέτουμε το νέο σχήμα
-            }
-            points = points + shapePoints; //προσθέτουμε τους πόντους του σχήματος στους συνολικούς πόντους
-            System.out.println("Kerdismenoi pontoi: " + shapePoints);
-        } else {
-            System.out.println("To schima aporrifthike.");
-        }
     }
 
     public boolean isStackFull() { //μέθοδος isStackFull που ελέγχει αν γέμισε η στοίβα του παίχτη
