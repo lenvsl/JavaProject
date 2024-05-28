@@ -15,32 +15,11 @@ public class Player {
         this.points = 0; //αρχικοποίηση των πόντων του παίχτη
     }
 
-    public void playShape(Shape shape) { //μέθοδος playShape η οποία παίρνει σαν όρισμα ένα σχήμα και υλοποιεί το παιχνίδι του παίχτη για το         σχήμα
-        // Scanner scanner = null;
-        // String input = null;
-
-        // //Με το try block διαχειριζόμαστε τυχόν εξαιρέσεις
-        // try {
-        // scanner = new Scanner(System.in); //Scanner που διαβάζει από την κονσόλα αυτό που πληκτρολογεί ο χρήστης
+    public void playShape(Shape shape) { //μέθοδος playShape η οποία παίρνει σαν όρισμα ένα σχήμα και υλοποιεί το παιχνίδι του παίχτη για το σχήμα
             Scanner scanner = new Scanner(System.in);
             System.out.println("Dimiourgithike neo schima: " + shape);
             System.out.println("Thelete na diatirisete afto to schima; (yes/no):");
             String input = scanner.nextLine().trim().toLowerCase(); //ανάγνωση της απάντησης του χρήστη
-
-        //     if (scanner.hasNextLine()) {
-        //         input = scanner.nextLine();
-        //         // process the input
-        //     } else {
-        //         System.out.println("No input provided.");
-        //     }
-        //     //input = scanner.nextLine().trim().toLowerCase(); //ανάγνωση της απάντησης του χρήστη
-        
-        // } finally {
-        //     if (scanner != null) { //ελέγχει αν ο scanner έχει αρχικοποιηθεί
-        //         scanner.close(); //κλείνουμε τον scanner για να απελευθερώσει πόρους, αν δεν τον κλείσουμε μπορεί να προκληθεί διαρροή μνήμης, οπότε γιαυτό χρειάζεται να τον κλείσουμε
-        //     }
-        // }
-
         if ("yes".equals(input)) { //αν η απάντηση είναι "ναι"
             double shapePoints = shape.computePoints(); //υπολογισμός των πόντων του σχήματος
             if (!shapeStack.isEmpty()) { //αν η στοίβα δεν είναι άδεια
