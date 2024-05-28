@@ -10,14 +10,14 @@ public class ShapeGenerator {
     private static final int[] SIZES = {1, 2, 3, 4, 8, 12, 16}; //πιθανές τιμές για το εμβαδόν του περιβάλλοντος τετραγώνου
     private List<Shape> shapes; //λίστα για αποθήκευση σχημάτων
     private Random randomNumber; //τυχαίος αριθμός για δημιουργία bonus και τυχαία αναδιάταξη
-    public ShapeGenerator(int shapesPerType) { //κλάση ShapeGenerator η οποία υλοποιεί την γεννήτρια που παράγει σχήματα
+    public ShapeGenerator(int numOfShapes) { //κλάση ShapeGenerator η οποία υλοποιεί την γεννήτρια που παράγει σχήματα
         shapes = new ArrayList<>(); //αρχικοποίηση της λίστας
         //randomNumber = new Random();
-        initializeShapes(shapesPerType); //κλήση της μεθόδου για αρχικοποίηση των σχημάτων
+        initializeShapes(numOfShapes); //κλήση της μεθόδου για αρχικοποίηση των σχημάτων
     }
 
-    private void initializeShapes(int shapesPerType) { //μέθοδος initializeShapes που καλείται από τον constructor και γεμίζει τον πίνακα με τα σχήματα
-        for (int i = 0; i < shapesPerType; i++) {
+    private void initializeShapes(int numOfShapes) { //μέθοδος initializeShapes που καλείται από τον constructor και γεμίζει τον πίνακα με τα σχήματα
+        for (int i = 0; i < numOfShapes; i++) {
             shapes.add(new Square(getRandomSize()));
             shapes.add(new Triangle(getRandomSize()));
             shapes.add(new Pentagon(getRandomSize()));
@@ -59,8 +59,8 @@ public class ShapeGenerator {
         ShapeGenerator shapeGenerator = new ShapeGenerator(2); //δημιουργία γεννήτριας με 2 σχήματα ανά τύπο
         while (shapeGenerator.hasShape()) {
             Shape shape = shapeGenerator.nextShape(); //λήψη του επόμενου σχήματος
-            System.out.println("Επόμενο σχήμα: " + shape); //εμφάνιση του σχήματος
-            System.out.println("Υπόλοιπα σχήματα στη γεννήτρια:" + shapeGenerator); //εμφάνιση της γεννήτριας
+            System.out.println("Epomeno schima: " + shape); //εμφάνιση του σχήματος
+            System.out.println("Ypoloipa schimata sti gennitria: " + shapeGenerator); //εμφάνιση της γεννήτριας
         }
     }
 }
